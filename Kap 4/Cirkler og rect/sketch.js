@@ -59,7 +59,7 @@ if(DisS<d+2/d){SP+=1,caught=true};
   ellipse(OstX,OstY,d/2,d/2,);
   fill(255, 0, 0);
 
-  rect(SquareX, SquareY, d, d);
+  rect(SquareX, SquareY, d, d,2);
   ellipse(CircleX, CircleY, d, d);
   strokeWeight(2)
 
