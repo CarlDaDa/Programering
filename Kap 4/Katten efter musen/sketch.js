@@ -14,6 +14,7 @@ let ostX;
 let ostY;
 let eaten;
 let point;
+let catSpeed;
 
 function setup() {
   createCanvas(640, 360);
@@ -30,6 +31,7 @@ function setup() {
   OST();
   eaten = false;
   point = 0;
+  catSpeed = 5;
 }
 
 function draw() {
@@ -56,16 +58,25 @@ function draw() {
   fill(255, 255, 0);
   circle(ostX, ostY, d / 2);
   fill(139, 69, 19);
-  ellipse(x, y, d, d);
   rect(catx - d / 2, caty - d / 2, d, d, 3);
+  if (point >= 10) {
+    fill(204, 186, 120);
+  } else fill(139, 69, 19);
+  ellipse(x, y, d + point, d + point);
+  ellipse(x, y, d, d);
+
   strokeWeight(1);
 
   if (keyIsDown(LEFT_ARROW)) {
-    x -= speed;
+    if (x > 0 + d / 2) {
+      x -= speed;
+    }
   }
 
   if (keyIsDown(RIGHT_ARROW)) {
-    x += speed;
+    if (x < width - d / 2) {
+      x += speed;
+    }
   }
 
   if (keyIsDown(UP_ARROW)) {
@@ -80,16 +91,28 @@ function draw() {
   y += b;
   catx += catA;
   bordercheck();
-  console.log(point);
+  console.log(catSpeed);
 }
 function bordercheck() {
   if (catx + d / 2 >= width) {
     border += 1;
-    catA = border * multip * -speed;
+    //catA = border * multip * -speed;
+    if (catSpeed <= 20) {
+      catA = multip * -border + -catSpeed;
+      catSpeed += multip * border;
+    } else {
+      catA = -catSpeed;
+    }
   }
   if (catx - d / 2 <= 0) {
     border += 1;
-    catA = border * multip * speed;
+    //  catA = border * multip * speed;
+    if (catSpeed <= 20) {
+      catA = multip * border + catSpeed;
+      catSpeed += multip * border;
+    } else {
+      catA = catSpeed;
+    }
   }
 }
 function OST() {
