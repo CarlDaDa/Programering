@@ -34,7 +34,7 @@ function setup() {
 
 function draw() {
   frameRate(30);
-  background(220);
+  background(0, 120, 0);
 
   let DisM = dist(x, y, catx, caty);
   if (DisM <= d) {
