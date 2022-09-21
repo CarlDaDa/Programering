@@ -15,6 +15,7 @@ let ostY;
 let eaten;
 let point;
 let catSpeed;
+let level;
 
 function setup() {
   createCanvas(640, 360);
@@ -30,23 +31,23 @@ function setup() {
   multip = 0.3;
   OST();
   eaten = false;
-  point = 0;
+  point = 19;
   catSpeed = 5;
+  level = 1;
 }
 
 function draw() {
   frameRate(30);
-  background(0, 120, 0);
 
   let DisM = dist(x, y, catx, caty);
-  if (DisM <= d) {
+  if (DisM <= d + point / 2) {
     caught = true;
   }
   if (caught == true) {
     setup();
   }
   let DisO = dist(x, y, ostX, ostY);
-  if (DisO <= d) {
+  if (DisO <= d + point / 2) {
     eaten = true;
   }
   if (eaten == true) {
@@ -55,15 +56,26 @@ function draw() {
     point += 1;
   }
 
-  fill(255, 255, 0);
-  circle(ostX, ostY, d / 2);
-  fill(139, 69, 19);
-  rect(catx - d / 2, caty - d / 2, d, d, 3);
-  if (point >= 10) {
-    fill(204, 186, 120);
-  } else fill(139, 69, 19);
-  ellipse(x, y, d + point, d + point);
-  ellipse(x, y, d, d);
+  if (point < 20) {
+    background(0, 120, 0);
+    fill(255, 255, 0);
+    circle(ostX, ostY, d / 2);
+    fill(139, 69, 19);
+    rect(catx - d / 2, caty - d / 2, d, d, 3);
+    if (point >= 10) {
+      fill(204, 186, 120);
+    } else fill(139, 69, 19);
+    ellipse(x, y, d + point, d + point);
+    ellipse(x, y, d, d);
+  } else {
+    background(0, 0, 255);
+    fill(255, 255, 0);
+    circle(ostX, ostY, d / 2);
+    fill(139, 69, 19);
+    rect(catx - d / 2, caty - d / 2, d, d, 3);
+    ellipse(x, y, d + point, d + point);
+    speed = 8;
+  }
 
   strokeWeight(1);
 
@@ -80,11 +92,15 @@ function draw() {
   }
 
   if (keyIsDown(UP_ARROW)) {
-    y -= speed;
+    if (y >= 0 + d / 2) {
+      y -= speed;
+    }
   }
 
   if (keyIsDown(DOWN_ARROW)) {
-    y += speed;
+    if (y <= height - d / 2) {
+      y += speed;
+    }
   }
 
   x += a;
