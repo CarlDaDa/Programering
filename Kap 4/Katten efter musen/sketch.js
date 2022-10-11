@@ -33,7 +33,7 @@ function setup() {
   OST();
   eaten = false;
   point = 0;
-  catSpeed = 0;
+  catSpeed = 0d;
   level = 1;
   RESET = false;
 }
