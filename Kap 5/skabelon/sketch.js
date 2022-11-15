@@ -1,9 +1,14 @@
-let niv;
 function setup() {
   createCanvas(400, 400);
+  let r = random(10, 200);
+  background(220);
+  fill(100);
+  // rect(100, 100, 2 * r, r);
 
-  for (let i = 0; i < 26; i++) {
-    niv = (26 - i * 26 - 3 - i) / 2*1/i!;
-    text(niv, height / 2 + 10 * i, 100 / 2 + 10 * i);
-  }
+  line(200, 100, 200 + r, 200);
+  line(200, 100, 200 - r, 200);
+  line(200 - r, 200, 200, 300);
+  line(200 + r, 200, 200, 300);
 }
+
+function draw() {}
