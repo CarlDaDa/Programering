@@ -1,14 +1,13 @@
+let button;
 function setup() {
   createCanvas(400, 400);
-  let r = random(10, 200);
-  background(220);
-  fill(100);
-  // rect(100, 100, 2 * r, r);
-
-  line(200, 100, 200 + r, 200);
-  line(200, 100, 200 - r, 200);
-  line(200 - r, 200, 200, 300);
-  line(200 + r, 200, 200, 300);
+  background(0);
+  button = createButton("click me");
+  button.position(200, 200);
+  button.mousePressed(changeBG, print("fjkdl"));
 }
 
-function draw() {}
+function changeBG() {
+  let val = random(255);
+  background(val);
+}
