@@ -3,6 +3,9 @@ let roof;
 let maling;
 let romal;
 let plac;
+let et2
+let et3
+let et4
 
 function setup() {
   createCanvas(600, 600);
